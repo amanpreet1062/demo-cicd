@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2ffc0c20-f586-464d-ae89-1c3afb1d37b6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="de1090e5-513a-4041-8b0c-53d7ef97b1dd" basePath="/api/v1" >
+		<http:request-connection protocol="HTTPS" host="dummy.restapiexample.com" />
+	</http:request-config>
+	<flow name="demo-cicdFlow" doc:id="128fbad6-7bf7-4457-ba00-64182751059b" >
+		<http:listener doc:name="Listener" doc:id="9404dbb6-bbdc-44b5-a40b-877296c843f4" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="00113d77-6d07-4f6a-a3b3-f35d045294c0" message="Start"/>
+		<http:request method="GET" doc:name="Request" doc:id="3e093f4b-1b76-499d-b8b2-b0edad12e10a" config-ref="HTTP_Request_configuration" path="/employees"/>
+		<logger level="INFO" doc:name="Logger" doc:id="0c3469de-019f-4729-9272-f11e3b01293e" message="End"/>
+	</flow>
+</mule>
