@@ -6,6 +6,8 @@ on:
     branches:
       - main
 
+ACCESS_TOKEN= "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"
+
 permissions:
   contents: read
   pages: write
@@ -48,4 +50,4 @@ jobs:
           id: deployment
           uses: actions/deploy-pages@v2.0.3
           with:
-            token : ${{github.token}}
+            token : $ACCESS_TOKEN
